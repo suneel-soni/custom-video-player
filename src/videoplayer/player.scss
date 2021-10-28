@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+$roboto: 'Roboto', sans-serif;
+$white: #ffffff;
+$color: #ec3e72;
+
+$transition: all 0.3s ease-in-out;
+
+.pointer {
+  cursor: pointer;
+}
+
+#playerWrapper {
+  background-color: #000000;
+  font-family: $roboto;
+  width: 100%;
+  height: 550px;
+  position: relative;
+  user-select: none;
+  transition: $transition;
+
+  #controlsWrapper {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  button {
+    background: transparent;
+    box-sizing: border-box;
+    border: 0px transparent;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.8em;
+    position: relative;
+    min-width: max-content;
+    height: 2em;
+    padding: 0.5em;
+    outline: none;
+    transition: $transition;
+    @extend .pointer;
+  }
+  #controlsTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    & > * {
+      margin: 0 3%;
+    }
+  }
+  #controlsBottom {
+    background: linear-gradient(180deg, transparent, rgba(0, 1, 1, 0.65098));
+  }
+  #progressBar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 15px;
+    padding: 0.5em 1em;
+  }
+  .videoDuration {
+    color: $white;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  #controlsGrid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .controlsItems {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    & > * {
+      margin: 0 1%;
+    }
+  }
+  .volumeButton {
+    position: relative;
+    img {
+      z-index: 1;
+    }
+    .volumeControls {
+      background: #272727;
+      position: absolute;
+      bottom: 100%;
+      display: none;
+      opacity: 0;
+      padding: 15px 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      transition: $transition;
+      z-index: 2;
+
+      .ant-slider-vertical,
+      .ant-slider-rail {
+        height: 80px;
+      }
+    }
+    &:hover .volumeControls {
+      display: block;
+      opacity: 1;
+    }
+  }
+  .ant-slider {
+    height: 14px;
+    margin: 0px;
+    .ant-slider-rail,
+    .ant-slider-track,
+    .ant-slider-step {
+      height: 6px;
+      border-radius: 3px;
+    }
+    .ant-slider-track {
+      background-color: $color;
+    }
+    .ant-slider-rail {
+      background-color: #fff;
+      opacity: 0.8;
+    }
+    .ant-slider-handle {
+      border-color: $color !important;
+      margin-top: -4px;
+    }
+    &:hover {
+      .ant-slider-handle:not(.ant-tooltip-open) {
+        border-color: $color !important;
+      }
+      .ant-slider-track {
+        background-color: $color;
+      }
+    }
+  }
+  .speedButton {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 8px;
+    }
+    .speedControls {
+      background: #272727;
+      position: absolute;
+      display: none;
+      opacity: 0;
+      bottom: 100%;
+      border-radius: 5px;
+      z-index: 2;
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      li {
+        font-size: 14px;
+        font-weight: 500;
+        color: $white;
+        padding: 10px;
+        transition: $transition;
+        @extend .pointer;
+        &:hover {
+          color: $color;
+        }
+        .activeSpeedRate {
+          color: $color;
+        }
+      }
+    }
+
+    &:hover .speedControls {
+      display: block;
+      opacity: 1;
+    }
+  }
+  .speedInfo {
+    font-size: 14px;
+    font-weight: 500;
+    color: $white;
+    padding: 0.25em 0.3em;
+    min-width: max-content;
+    text-align: center;
+    transition: $transition;
+    transition-property: min-width;
+    text-align: left;
+  }
+  .playerLoader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
+  }
+  .rewindForwardIcons {
+    width: clamp(24px, 5vw, 42px);
+  }
+  .playPauseButton {
+    svg {
+      font-size: clamp(42px, 12vw, 100px);
+    }
+  }
+}
